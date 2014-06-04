@@ -11,24 +11,24 @@ namespace MWBuildings
 {
     public partial class Form1 : Form
     {
-		private List<System.Windows.Forms.NumericUpDown> numberBoxes;
-		private List<System.Windows.Forms.TextBox> textBoxes;
+		private List<NumericUpDown> numberBoxes;
+		private List<TextBox> textBoxes;
 		private List<int> initialCosts;
 		private List<int> incomes;
 
         public Form1()
         {
-            InitializeComponent();
-			addNumberBoxes();
-			addTextBoxes();
-			initializeCosts();
-			initializeIncomes();
+            this.InitializeComponent();
+			this.addNumberBoxes();
+			this.addTextBoxes();
+			this.initializeCosts();
+			this.initializeIncomes();
 			//loadNA1();
         }
 
 		private void addNumberBoxes()
 		{
-			this.numberBoxes = new List<System.Windows.Forms.NumericUpDown>{
+			this.numberBoxes = new List<NumericUpDown>{
 				this.farmNumberBox,
 				this.penNumberBox,
 				this.storageNumberBox,
@@ -49,7 +49,7 @@ namespace MWBuildings
 
 		private void addTextBoxes()
 		{
-			this.textBoxes = new List<System.Windows.Forms.TextBox>{
+			this.textBoxes = new List<TextBox>{
 				this.farmTextBox,
 				this.penTextBox,
 				this.storageTextBox,
@@ -161,7 +161,7 @@ namespace MWBuildings
 			this.buttonCalculate.Visible = true;
         }
 
-		private int findCost(System.Windows.Forms.TextBox building)
+		private int findCost(TextBox building)
 		{
 			int initialCost = this.initialCosts[this.textBoxes.IndexOf(building)];
 			double costIncrease = initialCost * 0.1;
@@ -175,9 +175,9 @@ namespace MWBuildings
 			return cost;
 		}
 
-		private System.Windows.Forms.TextBox findMostEfficient()
+		private TextBox findMostEfficient()
 		{
-			System.Windows.Forms.TextBox bestBuilding = this.textBoxes[0];
+			TextBox bestBuilding = this.textBoxes[0];
 
 			int income = this.incomes[this.textBoxes.IndexOf(bestBuilding)];
 			int costToBuild = findCost(bestBuilding);
@@ -281,7 +281,7 @@ namespace MWBuildings
 
 		private void helpToolStripButton_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show("Monster Warlord Building Calculator\nVersion 1.0.0\nWritten by Dylan Stankievech\nCopyright 2013", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MessageBox.Show("Monster Warlord Building Calculator\nVersion 1.0.0\nWritten by Dylan Stankievech\nCopyright 2014", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
     }
 }
