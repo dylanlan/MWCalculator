@@ -9,6 +9,12 @@ using System.Windows.Forms;
 
 namespace MWBuildings
 {
+    /// <summary>
+    /// A form which allows the user to input their number of each building type in the
+    /// mobile app game, Monster Warlord, and their amount of gold they want to spend, and
+    /// it calculates and outputs the optimal buildings to buy, such that income is maximized.
+    /// Allows saving/loading building numbers from previous calculations.
+    /// </summary>
     public partial class Form1 : Form
     {
 		private List<NumericUpDown> numberBoxes;
@@ -26,6 +32,9 @@ namespace MWBuildings
 			//loadNA1();
         }
 
+        /// <summary>
+        /// Adds all the individual number boxes for each input number of building to a list
+        /// </summary>
 		private void addNumberBoxes()
 		{
 			this.numberBoxes = new List<NumericUpDown>{
@@ -47,6 +56,9 @@ namespace MWBuildings
 			};
 		}
 
+        /// <summary>
+        /// Adds all the individual text boxes for each output number of buildings to a list
+        /// </summary>
 		private void addTextBoxes()
 		{
 			this.textBoxes = new List<TextBox>{
@@ -68,6 +80,9 @@ namespace MWBuildings
 			};
 		}
 
+        /// <summary>
+        /// Initializes a list with the different incomes of each building type
+        /// </summary>
 		private void initializeIncomes()
 		{
 			this.incomes = new List<int>{
@@ -89,6 +104,9 @@ namespace MWBuildings
 			};
 		}
 
+        /// <summary>
+        /// Initializes a list of the different initial costs of each building type
+        /// </summary>
 		private void initializeCosts()
 		{
 			this.initialCosts = new List<int>{
@@ -110,6 +128,9 @@ namespace MWBuildings
 			};
 		}
 
+        /// <summary>
+        /// Can be used to automatically load the default file upon startup, currently commented out
+        /// </summary>
 		private void loadNA1()
         {
 			string filePath = this.openFileDialog1.InitialDirectory + "\\" + this.openFileDialog1.FileName;
@@ -136,6 +157,17 @@ namespace MWBuildings
 			}
         }
 
+        /// <summary>
+        /// Performs calculations to find the optimal buildings to buy with the given
+        /// values in the numeric up down boxes and the gold amount to maximize the
+        /// income
+        /// </summary>
+        /// <param name="sender">
+        /// Object which calls this method
+        /// </param>
+        /// <param name="e">
+        /// Arguments associated with this event
+        /// </param>
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
 			this.buttonCalculate.Visible = false;
@@ -161,6 +193,15 @@ namespace MWBuildings
 			this.buttonCalculate.Visible = true;
         }
 
+        /// <summary>
+        /// Finds the cost of buying the number of buildings of the given textbox
+        /// </summary>
+        /// <param name="building">
+        /// The textbox associated with the building cost to calculate
+        /// </param>
+        /// <returns>
+        /// The amount of gold required to buy the given number of this building
+        /// </returns>
 		private int findCost(TextBox building)
 		{
 			int initialCost = this.initialCosts[this.textBoxes.IndexOf(building)];
@@ -175,6 +216,13 @@ namespace MWBuildings
 			return cost;
 		}
 
+        /// <summary>
+        /// Finds the optimal next building to purchase; the building which has the
+        /// highest income divided by cost
+        /// </summary>
+        /// <returns>
+        /// The textbox associated with the best next building to buy
+        /// </returns>
 		private TextBox findMostEfficient()
 		{
 			TextBox bestBuilding = this.textBoxes[0];
@@ -196,6 +244,15 @@ namespace MWBuildings
 			return bestBuilding;
 		}
 
+        /// <summary>
+        /// Called when a key is pressed in a textbox, ensuring only control and digit characters are permitted
+        /// </summary>
+        /// <param name="sender">
+        /// The object calling this method
+        /// </param>
+        /// <param name="e">
+        /// The arguments associated with this event
+        /// </param>
 		private void textBox_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			if (!char.IsControl(e.KeyChar)
@@ -205,11 +262,30 @@ namespace MWBuildings
 			}
 		}
 
+        /// <summary>
+        /// Called when the user clicks the save button
+        /// </summary>
+        /// <param name="sender">
+        /// The object calling this method
+        /// </param>
+        /// <param name="e">
+        /// Arguments associated with this event
+        /// </param>
 		private void saveToolStripButton_Click(object sender, EventArgs e)
 		{
 			this.saveFileDialog1.ShowDialog();
 		}
 
+        /// <summary>
+        /// Called when the Ok button is clicked in the save dialog, saves the current
+        /// number of each building to a file
+        /// </summary>
+        /// <param name="sender">
+        /// The object calling this method
+        /// </param>
+        /// <param name="e">
+        /// The arguments associated with this event
+        /// </param>
 		private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
 		{
 			string filePath = this.saveFileDialog1.FileName;
@@ -233,11 +309,30 @@ namespace MWBuildings
 
 		}
 
+        /// <summary>
+        /// Called when the user clicks the open button
+        /// </summary>
+        /// <param name="sender">
+        /// The object calling this method
+        /// </param>
+        /// <param name="e">
+        /// Arguments associated with this event
+        /// </param>
 		private void openToolStripButton_Click(object sender, EventArgs e)
 		{
 			this.openFileDialog1.ShowDialog();
 		}
 
+        /// <summary>
+        /// Called when the user clicks Ok in the open dialog, loads all the
+        /// building numbers saved in the selected file
+        /// </summary>
+        /// <param name="sender">
+        /// The object calling this method
+        /// </param>
+        /// <param name="e">
+        /// The arguments associated with this event
+        /// </param>
 		private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
 		{
 			string filePath = this.openFileDialog1.FileName;
@@ -264,6 +359,15 @@ namespace MWBuildings
 			}
 		}
 
+        /// <summary>
+        /// When the user clicks the New button, it clears all the numbers in the controls
+        /// </summary>
+        /// <param name="sender">
+        /// The object calling this method
+        /// </param>
+        /// <param name="e">
+        /// The arguments associated with this event
+        /// </param>
 		private void newToolStripButton_Click(object sender, EventArgs e)
 		{
 			this.penLabel.Focus();
@@ -279,6 +383,15 @@ namespace MWBuildings
 			this.goldNumberBox.Value = 0;
 		}
 
+        /// <summary>
+        /// Called when the user clicks the Help button, displays information about this program
+        /// </summary>
+        /// <param name="sender">
+        /// The object calling this method
+        /// </param>
+        /// <param name="e">
+        /// Arguments associated with this event
+        /// </param>
 		private void helpToolStripButton_Click(object sender, EventArgs e)
 		{
 			MessageBox.Show("Monster Warlord Building Calculator\nVersion 1.0.0\nWritten by Dylan Stankievech\nCopyright 2014", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
