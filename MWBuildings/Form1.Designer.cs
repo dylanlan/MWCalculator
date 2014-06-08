@@ -593,7 +593,7 @@
 			// 
 			this.saveFileDialog1.DefaultExt = "txt";
 			this.saveFileDialog1.Filter = "Text file (*.txt)|*.txt";
-			this.saveFileDialog1.InitialDirectory = "D:\\Dylan\\Projects\\C#\\MWBuildings\\MWBuildings\\Saved files";
+			this.saveFileDialog1.InitialDirectory = "..\\..\\..\\Saved files";
 			this.saveFileDialog1.Title = "Save Buildings";
 			this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
 			// 
@@ -602,7 +602,7 @@
 			this.openFileDialog1.DefaultExt = "txt";
 			this.openFileDialog1.FileName = "na1.txt";
 			this.openFileDialog1.Filter = "Text files (*.txt)|*.txt";
-			this.openFileDialog1.InitialDirectory = "D:\\Dylan\\Projects\\C#\\MWBuildings\\MWBuildings\\Saved files";
+			this.openFileDialog1.InitialDirectory = "..\\..\\..\\Saved files";
 			this.openFileDialog1.Title = "Open Buildings";
 			this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
 			// 
