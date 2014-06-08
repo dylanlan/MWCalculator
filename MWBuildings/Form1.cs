@@ -25,6 +25,7 @@ namespace MWBuildings
         public Form1()
         {
             this.InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
 			this.addNumberBoxes();
 			this.addTextBoxes();
 			this.initializeCosts();
@@ -289,6 +290,7 @@ namespace MWBuildings
 		private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
 		{
 			string filePath = this.saveFileDialog1.FileName;
+            Properties.Settings.Default["FilePath"] = filePath;
 			System.IO.StreamWriter writer = null;
 			try
 			{
@@ -336,6 +338,7 @@ namespace MWBuildings
 		private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
 		{
 			string filePath = this.openFileDialog1.FileName;
+            Properties.Settings.Default["FilePath"] = filePath;
 			System.IO.StreamReader reader = null;
 			try
 			{
